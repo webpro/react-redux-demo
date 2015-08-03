@@ -11,7 +11,7 @@ export default class Comments extends React.Component {
 
         if(!semaphore) return null;
 
-        let comments = semaphore.getStates().map((comment, i) => <Comment key={i} comment={comment}/>);
+        let comments = semaphore.STATES.map((comment, i) => <Comment key={i} comment={comment}/>);
 
         return (
             <div>{comments}</div>

@@ -9,31 +9,25 @@ const initialState = {
 };
 
 const actionsMap = {
-    [SEMAPHORES_REQUEST_SUCCESS]: (state, action) => ({semaphores: parse(action.payload.semaphores)}),
+    [SEMAPHORES_REQUEST_SUCCESS]: (state, action) => ({semaphores: action.payload.semaphores}),
     [SEMAPHORE_HOVER]: (state, action) => ({hoveredSemaphoreId: action.payload.semaphoreId}),
     [SEMAPHORE_LOCK]: (state, action) => ({lockedSemaphoreId: action.payload.semaphoreId, lockedSemaphoreState: action.payload.semaphoreState}),
     [SEMAPHORE_STATE_SUBMIT_SUCCESS]: (state, action) => ({lockedSemaphoreId: null, lockedSemaphoreState: null})
 };
 
-function parse(semaphores) {
-    return semaphores.map(s => ({getCurrentState, getStates, ...s}));
-}
-
-function getCurrentState() {
-    let state = find(this.STATES, {CURRENT: 'Y'});
+const getCurrentState = semaphore => {
+    let state = find(semaphore.STATES, {CURRENT: 'Y'});
     if(state) {
         return state.STATE;
     }
     return null;
-}
+};
 
-function getStates() {
-    return this.STATES;
-}
-
-export default function semahores(state = initialState, action) {
+export default function semaphores(state = initialState, action) {
     const reduceFn = actionsMap[action.type];
     if(!reduceFn) return state;
 
     return {...state, ...reduceFn(state, action)};
 }
+
+export { getCurrentState }

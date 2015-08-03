@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import SemaphoreActions from '../actions/SemaphoreActions';
+import { getCurrentState } from '../reducers/semaphores';
 import classNames from 'classnames';
 import find from 'lodash.find';
 import { formatTime } from '../util/templateHelpers';
@@ -27,7 +28,7 @@ export default class Semaphore extends React.Component {
             return (<div></div>);
         }
 
-        let classes = classNames(['semaphore', SEMAPHORE_MAP[semaphore.getCurrentState()], SEMAPHORE_MAP[this.props.id === this.props.semaphores.lockedSemaphoreId ? this.props.semaphores.lockedSemaphoreState : null]]);
+        let classes = classNames(['semaphore', SEMAPHORE_MAP[getCurrentState(semaphore)], SEMAPHORE_MAP[this.props.id === this.props.semaphores.lockedSemaphoreId ? this.props.semaphores.lockedSemaphoreState : null]]);
 
         let lineClass = this.props.lines ? ['line', ...this.props.lines.split(' ').map(l => `line-${l}`)].join(' ') : '';
 
