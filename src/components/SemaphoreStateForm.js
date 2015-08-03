@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import SemaphoreActions from '../actions/SemaphoreActions';
 import Comments from './Comments';
-import find from 'lodash.find';
 
 function validate(data) {
     let invalid = {};
@@ -56,7 +55,7 @@ export default class SemaphoreStateForm extends React.Component {
 
     render() {
 
-        let semaphore = find(this.props.semaphores.semaphores, {ID: this.props.semaphores.lockedSemaphoreId});
+        let semaphore = this.props.semaphores.semaphores[this.props.semaphores.lockedSemaphoreId];
 
         if(!semaphore) return null;
 

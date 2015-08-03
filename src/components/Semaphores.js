@@ -39,7 +39,7 @@ export default class Semaphores extends React.Component {
 
         let shift = find(this.props.funFairShifts.shifts, {ID: this.props.funFairShifts.selectedShiftId}) || {};
 
-        let semaphore = find(this.props.semaphores.semaphores, {ID: this.props.semaphores.hoveredSemaphoreId}),
+        let semaphore = this.props.semaphores.semaphores[this.props.semaphores.hoveredSemaphoreId],
             semaphoreTitle = semaphore ? (<h4>{semaphore.TITLE}</h4>) : null;
 
         let line = 'line line-horizontal';

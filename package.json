@@ -13,6 +13,7 @@
     "font-awesome": "^4.4.0",
     "lodash.assign": "^3.2.0",
     "lodash.find": "^3.2.1",
+    "lodash.indexby": "^3.1.1",
     "lodash.pluck": "^3.1.2",
     "lodash.sortbyorder": "^3.4.4",
     "purecss": "^0.6.0",

@@ -7,7 +7,13 @@ import find from 'lodash.find';
 import { formatTime } from '../util/templateHelpers';
 import { SEMAPHORE_MAP, INDICATOR_SHORT, INDICATOR_MEDIUM, INDICATOR_LONG, CLASSNAME_SHORT, CLASSNAME_MEDIUM, CLASSNAME_LONG } from '../constants';
 
-@connect(state => state)
+@connect((state, props) => {
+    return {
+        semaphore: state.semaphores.semaphores[props.id],
+        lockedSemaphoreId: state.semaphores.lockedSemaphoreId,
+        lockedSemaphoreState: state.semaphores.lockedSemaphoreState
+    };
+})
 export default class Semaphore extends React.Component {
 
     handleMouseEnter() {
@@ -20,15 +26,13 @@ export default class Semaphore extends React.Component {
 
     render() {
 
-        const { semaphores } = this.props;
-
-        let semaphore = find(semaphores.semaphores, {ID: this.props.id});
+        const { semaphore, lockedSemaphoreId, lockedSemaphoreState } = this.props;
 
         if(!semaphore) {
             return (<div></div>);
         }
 
-        let classes = classNames(['semaphore', SEMAPHORE_MAP[getCurrentState(semaphore)], SEMAPHORE_MAP[this.props.id === this.props.semaphores.lockedSemaphoreId ? this.props.semaphores.lockedSemaphoreState : null]]);
+        let classes = classNames(['semaphore', SEMAPHORE_MAP[getCurrentState(semaphore)], SEMAPHORE_MAP[semaphore.ID === lockedSemaphoreId ? lockedSemaphoreState : null]]);
 
         let lineClass = this.props.lines ? ['line', ...this.props.lines.split(' ').map(l => `line-${l}`)].join(' ') : '';
 
