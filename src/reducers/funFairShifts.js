@@ -1,5 +1,6 @@
 import { FUNFAIRSHIFTS_REQUEST_SUCCESS, FUNFAIRSHIFTS_SORT, FUNFAIRSHIFTS_SELECT } from '../constants/ActionTypes';
-import find from 'lodash.find';
+import sortByOrder from 'lodash.sortbyorder';
+
 
 const initialState = {
     shifts: [],
@@ -12,27 +13,10 @@ const actionsMap = {
     [FUNFAIRSHIFTS_SELECT]: (state, action) => ({selectedShiftId: action.payload.shiftId})
 };
 
-function sortBy(shifts, attr) {
-
+const sortBy = (shifts, attr) =>  {
     if(!attr) return shifts;
-
-    const sortAttribute = attr.replace(/^-/, '');
-    const sortDirection = attr.indexOf('-') === 0 ? -1 : 1;
-
-    return shifts.sort(function comparator(a, b) {
-
-        a = a[sortAttribute];
-        b = b[sortAttribute];
-
-        if (a === b) return 0;
-
-        if (sortDirection === 1) {
-            return a > b ? 1 : -1;
-        } else {
-            return a < b ? 1 : -1;
-        }
-    });
-}
+    return sortByOrder(shifts, attr.replace(/^-/, ''), attr.indexOf('-') !== 0);
+};
 
 export default function shifts(state = initialState, action) {
     const reduceFn = actionsMap[action.type];
