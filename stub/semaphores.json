@@ -1,0 +1,228 @@
+{
+    "SEMAPHORES": [
+        {
+            "ID": "entrance",
+            "TITLE": "Entrance",
+            "STATES": [
+                {
+                    "STATE": "SHORT",
+                    "TIMESTAMP": "2015-08-12T10:31:00",
+                    "ACTION": "N/A",
+                    "CURRENT": "Y",
+                    "REASON": "Stand-in arrived, all booths staffed."
+                },
+                {
+                    "STATE": "MEDIUM",
+                    "TIMESTAMP": "2015-08-12T10:03:00",
+                    "ACTION": "Call stand-in",
+                    "CURRENT": "N",
+                    "REASON": "Employee called in sick"
+                },
+                {
+                    "STATE": "SHORT",
+                    "TIMESTAMP": "2015-08-12T10:00:00",
+                    "ACTION": "N/A",
+                    "CURRENT": "N",
+                    "REASON": "Initial",
+                    "REASON_BY": "System"
+                }
+            ]
+        },
+        {
+            "ID": "icecream",
+            "TITLE": "Ice Cream",
+            "STATES": [
+                {
+                    "STATE": "MEDIUM",
+                    "TIMESTAMP": "2015-08-12T11:10:00",
+                    "ACTION": "Get new ice cream",
+                    "CURRENT": "Y",
+                    "REASON": "Out of ice cream"
+                },
+                {
+                    "STATE": "SHORT",
+                    "TIMESTAMP": "2015-08-12T10:00:00",
+                    "ACTION": "N/A",
+                    "CURRENT": "N",
+                    "REASON": "Initial",
+                    "REASON_BY": "System"
+                }
+            ]
+        },
+        {
+            "ID": "rollercoaster",
+            "TITLE": "Roller Coaster",
+            "STATES": [
+                {
+                    "STATE": "SHORT",
+                    "TIMESTAMP": "2015-08-12T10:00:00",
+                    "ACTION": "N/A",
+                    "CURRENT": "Y",
+                    "REASON": "Initial",
+                    "REASON_BY": "System"
+                }
+            ]
+        },
+        {
+            "ID": "waterride",
+            "TITLE": "Water Ride",
+            "STATES": [
+                {
+                    "STATE": "SHORT",
+                    "TIMESTAMP": "2015-08-12T10:00:00",
+                    "ACTION": "N/A",
+                    "CURRENT": "Y",
+                    "REASON": "Initial",
+                    "REASON_BY": "System"
+                }
+            ]
+        },
+        {
+            "ID": "burgers",
+            "TITLE": "Burger Bar",
+            "STATES": [
+                {
+                    "STATE": "SHORT",
+                    "TIMESTAMP": "2015-08-12T10:00:00",
+                    "ACTION": "N/A",
+                    "CURRENT": "Y",
+                    "REASON": "Initial",
+                    "REASON_BY": "System"
+                }
+            ]
+        },
+        {
+            "ID": "droptower",
+            "TITLE": "Drop Tower",
+            "STATES": [
+                {
+                    "STATE": "SHORT",
+                    "TIMESTAMP": "2015-08-12T10:00:00",
+                    "ACTION": "N/A",
+                    "CURRENT": "Y",
+                    "REASON": "Initial",
+                    "REASON_BY": "System"
+                }
+            ]
+        },
+        {
+            "ID": "wipeout",
+            "TITLE": "Wipeout",
+            "STATES": [
+                {
+                    "STATE": "LONG",
+                    "TIMESTAMP": "2015-08-12T11:08:00",
+                    "ACTION": "Install backup system",
+                    "CURRENT": "Y",
+                    "REASON": "System was wiped out!"
+                },
+                {
+                    "STATE": "SHORT",
+                    "TIMESTAMP": "2015-08-12T10:00:00",
+                    "ACTION": "N/A",
+                    "CURRENT": "N",
+                    "REASON": "Initial",
+                    "REASON_BY": "System"
+                }
+            ]
+        },
+        {
+            "ID": "milkshakes",
+            "TITLE": "Milkshakes",
+            "STATES": [
+                {
+                    "STATE": "SHORT",
+                    "TIMESTAMP": "2015-08-12T10:00:00",
+                    "ACTION": "N/A",
+                    "CURRENT": "Y",
+                    "REASON": "Initial",
+                    "REASON_BY": "System"
+                }
+            ]
+        },
+        {
+            "ID": "carousel",
+            "TITLE": "Carousel",
+            "STATES": [
+                {
+                    "STATE": "MEDIUM",
+                    "TIMESTAMP": "2015-08-12T12:16:00",
+                    "ACTION": "Find the horse!",
+                    "CURRENT": "Y",
+                    "REASON": "One of the horses ran way"
+                },
+                {
+                    "STATE": "SHORT",
+                    "TIMESTAMP": "2015-08-12T10:00:00",
+                    "ACTION": "N/A",
+                    "CURRENT": "N",
+                    "REASON": "Initial",
+                    "REASON_BY": "System"
+                }
+            ]
+        },
+        {
+            "ID": "hurricane",
+            "TITLE": "Hurricane",
+            "STATES": [
+                {
+                    "STATE": "MEDIUM",
+                    "TIMESTAMP": "2015-08-12T10:00:00",
+                    "ACTION": "Direct people to roller coaster",
+                    "CURRENT": "Y",
+                    "REASON": "This attraction is popular today"
+                },
+                {
+                    "STATE": "SHORT",
+                    "TIMESTAMP": "2015-08-12T10:00:00",
+                    "ACTION": "N/A",
+                    "CURRENT": "N",
+                    "REASON": "Initial",
+                    "REASON_BY": "System"
+                }
+            ]
+        },
+        {
+            "ID": "bungee",
+            "TITLE": "Bungee Jump",
+            "STATES": [
+                {
+                    "STATE": "MEDIUM",
+                    "TIMESTAMP": "2015-08-12T10:00:00",
+                    "ACTION": "Jump quicker",
+                    "CURRENT": "Y",
+                    "REASON": "Cord fixed"
+                },
+                {
+                    "STATE": "LONG",
+                    "TIMESTAMP": "2015-08-12T10:00:00",
+                    "ACTION": "Fix cord",
+                    "CURRENT": "N",
+                    "REASON": "Broken cord"
+                },
+                {
+                    "STATE": "SHORT",
+                    "TIMESTAMP": "2015-08-12T10:00:00",
+                    "ACTION": "N/A",
+                    "CURRENT": "N",
+                    "REASON": "Initial",
+                    "REASON_BY": "System"
+                }
+            ]
+        },
+        {
+            "ID": "exit",
+            "TITLE": "Exit",
+            "STATES": [
+                {
+                    "STATE": "SHORT",
+                    "TIMESTAMP": "2015-08-12T10:00:00",
+                    "ACTION": "N/A",
+                    "CURRENT": "Y",
+                    "REASON": "Initial",
+                    "REASON_BY": "System"
+                }
+            ]
+        }
+    ]
+}

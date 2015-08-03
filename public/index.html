@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Fun Fair</title>
+        <link rel="stylesheet" href="/build/css/stylesheet.css">
+    </head>
+    <body>
+
+        <div id="app" class="container"></div>
+
+        <script>
+            FUNFAIR_CONFIG = {
+                API: {
+                    production: {
+                        host: '',
+                        'shifts': '/stub/shifts.json?',
+                        'semaphores': '/stub/semaphores.json?',
+                        'feeders': '/stub/feeders.json?',
+                        'state': '/stub/state.json?'
+                    },
+                    local: {
+                        host: '',
+                        'shifts': '/stub/shifts.json?',
+                        'semaphores': '/stub/semaphores.json?',
+                        'feeders': '/stub/feeders.json?',
+                        'state': '/stub/state.json?'
+                    }
+                }
+            };
+        </script>
+
+        <script src="http://localhost:8080/webpack-dev-server.js"></script>
+        <script src="/bundle.js"></script>
+    </body>
+</html>
