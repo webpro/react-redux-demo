@@ -4,7 +4,7 @@ import { getRequestHeaders } from '../util/helpers.js';
 
 export default {
 
-    getShifts(sortAttr) {
+    getShifts(sortKey) {
 
         return dispatch => {
 
@@ -19,7 +19,7 @@ export default {
                     type: FUNFAIRSHIFTS_REQUEST_SUCCESS,
                     payload: {
                         shifts: body.SHIFTS,
-                        sortAttr: sortAttr
+                        sortKey: sortKey
                     }
                 });
             });

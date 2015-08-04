@@ -4,34 +4,31 @@ import { Link } from 'react-router';
 import FunFairShiftActions from '../actions/FunFairShiftActions';
 import FunFairShift from './FunFairShift';
 import { FUNFAIRSHIFTS_SORT } from '../constants/ActionTypes';
-
-function getSortAttr(props) {
-    return (props && props.location && props.location.query && props.location.query.sort) || '-START';
-}
+import mapValues from 'lodash.mapvalues';
 
 @connect(state => state)
 export default class FunFairShifts extends React.Component {
 
+    currentSortKey = '-START';
+
     componentDidMount() {
-        this.props.dispatch(FunFairShiftActions.getShifts(getSortAttr(this.props)));
+        this.props.dispatch(FunFairShiftActions.getShifts(this.currentSortKey));
     }
 
     componentWillReceiveProps(nextProps) {
-        if(getSortAttr(this.props) !== getSortAttr(nextProps)) {
-            this.props.dispatch({
-                type: FUNFAIRSHIFTS_SORT,
-                payload: {
-                    shifts: nextProps.funFairShifts.shifts,
-                    sortAttr: nextProps.location.query.sort
-                }
-            });
-        }
+        if(!nextProps.location.query || nextProps.location.query.sort === this.currentSortKey) return;
+        this.currentSortKey = nextProps.location.query.sort;
+        this.props.dispatch({
+            type: FUNFAIRSHIFTS_SORT,
+            payload: {
+                shifts: nextProps.funFairShifts.shifts,
+                sortKey: this.currentSortKey
+            }
+        });
     }
 
-    getSortFields(attrs, currentSortField) {
-        let sort = {};
-        attrs.forEach(field => {sort[field] = field === currentSortField ? '-' + field : field});
-        return sort;
+    getSortableKeys(shift) {
+        return mapValues(shift, (value, key) => key === this.currentSortKey ? '-' + key : key);
     }
 
     render() {
@@ -42,7 +39,7 @@ export default class FunFairShifts extends React.Component {
 
         let shiftComponents = shifts.map(shift => <FunFairShift key={shift.ID} shift={shift}/>);
 
-        let sort = this.getSortFields(Object.keys(shifts[0]), getSortAttr(this.props));
+        let sort = this.getSortableKeys(shifts[0]);
 
         return (
             <div>

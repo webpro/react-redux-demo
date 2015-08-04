@@ -8,14 +8,14 @@ const initialState = {
 };
 
 const actionsMap = {
-    [FUNFAIRSHIFTS_REQUEST_SUCCESS]: (state, action) => ({shifts: sortBy(action.payload.shifts, action.payload.sortAttr)}),
-    [FUNFAIRSHIFTS_SORT]: (state, action) => ({shifts: sortBy(action.payload.shifts, action.payload.sortAttr)}),
+    [FUNFAIRSHIFTS_REQUEST_SUCCESS]: (state, action) => ({shifts: sortBy(action.payload.shifts, action.payload.sortKey)}),
+    [FUNFAIRSHIFTS_SORT]: (state, action) => ({shifts: sortBy(action.payload.shifts, action.payload.sortKey)}),
     [FUNFAIRSHIFTS_SELECT]: (state, action) => ({selectedShiftId: action.payload.shiftId})
 };
 
-const sortBy = (shifts, attr) =>  {
-    if(!attr) return shifts;
-    return sortByOrder(shifts, attr.replace(/^-/, ''), attr.indexOf('-') !== 0);
+const sortBy = (shifts, key) =>  {
+    if(!key) return shifts;
+    return sortByOrder(shifts, key.replace(/^-/, ''), key.indexOf('-') !== 0);
 };
 
 export default function shifts(state = initialState, action) {
