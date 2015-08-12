@@ -3,19 +3,11 @@ import { Redirect, Router, Route } from 'react-router';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 import * as reducers from './reducers';
 import FunFairShiftsApp from './container/FunFairShiftsApp';
 import FunFairShifts from './components/FunFairShifts';
 import Semaphores from './components/Semaphores';
-
-function logger({ getState }) {
-    return next => action => {
-        console.info('dispatching', action);
-        const result = next(action);
-        console.log('state after', getState());
-        return result;
-    };
-}
 
 let middleware = [thunk];
 if(__DEV__) middleware.push(logger);
