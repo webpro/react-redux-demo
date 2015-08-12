@@ -3,12 +3,13 @@ import _ from 'lodash';
 
 const initialState = {
     shifts: [],
-    selectedShiftId: null
+    selectedShiftId: null,
+    sortKey: '-START'
 };
 
 const actionsMap = {
-    [FUNFAIRSHIFTS_REQUEST_SUCCESS]: (state, action) => ({shifts: sortBy(action.payload.shifts, action.payload.sortKey)}),
-    [FUNFAIRSHIFTS_SORT]: (state, action) => ({shifts: sortBy(action.payload.shifts, action.payload.sortKey)}),
+    [FUNFAIRSHIFTS_REQUEST_SUCCESS]: (state, action) => ({shifts: sortBy(action.payload.shifts, state.sortKey)}),
+    [FUNFAIRSHIFTS_SORT]: (state, action) => ({shifts: sortBy(state.shifts, action.payload.sortKey), sortKey: action.payload.sortKey}),
     [FUNFAIRSHIFTS_SELECT]: (state, action) => ({selectedShiftId: action.payload.shiftId})
 };
 

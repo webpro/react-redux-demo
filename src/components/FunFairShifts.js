@@ -6,23 +6,20 @@ import FunFairShift from './FunFairShift';
 import { FUNFAIRSHIFTS_SORT } from '../constants/ActionTypes';
 import _ from 'lodash';
 
-@connect(state => state)
+@connect(state => state.funFairShifts)
 export default class FunFairShifts extends React.Component {
 
-    currentSortKey = '-START';
-
     componentDidMount() {
-        this.props.dispatch(FunFairShiftActions.getShifts(this.currentSortKey));
+        this.props.dispatch(FunFairShiftActions.getShifts());
     }
 
     componentWillReceiveProps(nextProps) {
-        if(!nextProps.location.query || nextProps.location.query.sort === this.currentSortKey) return;
-        this.currentSortKey = nextProps.location.query.sort;
+        let sortKey = _.get(nextProps, 'location.query.sort');
+        if(sortKey === nextProps.sortKey) return;
         this.props.dispatch({
             type: FUNFAIRSHIFTS_SORT,
             payload: {
-                shifts: nextProps.funFairShifts.shifts,
-                sortKey: this.currentSortKey
+                sortKey: sortKey
             }
         });
     }
@@ -33,7 +30,7 @@ export default class FunFairShifts extends React.Component {
 
     render() {
 
-        let { shifts } = this.props.funFairShifts;
+        let shifts = this.props.shifts;
 
         if(shifts.length === 0) return null;
 
@@ -47,7 +44,7 @@ export default class FunFairShifts extends React.Component {
                     <thead>
                         <tr>
                             <th><Link to="/shifts" query={{sort: sort.ID}}>ID</Link></th>
-                            <th><Link to="/shifts" query={{sort: sort.DATE}}>DATE</Link></th>
+                            <th><Link to="/shifts" query={{sort: sort.START}}>DATE</Link></th>
                             <th><Link to="/shifts" query={{sort: sort.TYPE}}>TYPE</Link></th>
                             <th><Link to="/shifts" query={{sort: sort.START}}>START</Link></th>
                             <th><Link to="/shifts" query={{sort: sort.END}}>END</Link></th>
