@@ -6,7 +6,7 @@ import SemaphoreActions from '../actions/SemaphoreActions';
 import Semaphore from './Semaphore';
 import SemaphoreStateForm from './SemaphoreStateForm';
 import Comments from './Comments';
-import find from 'lodash.find';
+import _ from 'lodash';
 import { formatDate, formatTime } from '../util/templateHelpers';
 
 @connect(state => state)
@@ -37,7 +37,7 @@ export default class Semaphores extends React.Component {
 
     render() {
 
-        let shift = find(this.props.funFairShifts.shifts, {ID: this.props.funFairShifts.selectedShiftId}) || {};
+        let shift = _.find(this.props.funFairShifts.shifts, {ID: this.props.funFairShifts.selectedShiftId}) || {};
 
         let semaphore = this.props.semaphores.semaphores[this.props.semaphores.hoveredSemaphoreId],
             semaphoreTitle = semaphore ? (<h4>{semaphore.TITLE}</h4>) : null;

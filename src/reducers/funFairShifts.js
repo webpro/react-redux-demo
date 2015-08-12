@@ -1,6 +1,5 @@
 import { FUNFAIRSHIFTS_REQUEST_SUCCESS, FUNFAIRSHIFTS_SORT, FUNFAIRSHIFTS_SELECT } from '../constants/ActionTypes';
-import sortByOrder from 'lodash.sortbyorder';
-
+import _ from 'lodash';
 
 const initialState = {
     shifts: [],
@@ -15,7 +14,7 @@ const actionsMap = {
 
 const sortBy = (shifts, key) =>  {
     if(!key) return shifts;
-    return sortByOrder(shifts, key.replace(/^-/, ''), key.indexOf('-') !== 0);
+    return _.sortByOrder(shifts, key.replace(/^-/, ''), key.indexOf('-') !== 0);
 };
 
 export default function shifts(state = initialState, action) {

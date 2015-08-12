@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import FunFairShiftActions from '../actions/FunFairShiftActions';
 import FunFairShift from './FunFairShift';
 import { FUNFAIRSHIFTS_SORT } from '../constants/ActionTypes';
-import mapValues from 'lodash.mapvalues';
+import _ from 'lodash';
 
 @connect(state => state)
 export default class FunFairShifts extends React.Component {
@@ -28,7 +28,7 @@ export default class FunFairShifts extends React.Component {
     }
 
     getSortableKeys(shift) {
-        return mapValues(shift, (value, key) => key === this.currentSortKey ? '-' + key : key);
+        return _.mapValues(shift, (value, key) => key === this.props.sortKey ? '-' + key : key);
     }
 
     render() {

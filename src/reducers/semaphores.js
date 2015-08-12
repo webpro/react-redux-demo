@@ -1,6 +1,5 @@
 import { SEMAPHORES_REQUEST_SUCCESS, SEMAPHORE_HOVER, SEMAPHORE_LOCK, SEMAPHORE_STATE_SUBMIT_SUCCESS } from '../constants/ActionTypes';
-import find from 'lodash.find';
-import indexBy from 'lodash.indexby';
+import _ from 'lodash';
 
 const initialState = {
     semaphores: {},
@@ -10,7 +9,7 @@ const initialState = {
 };
 
 const actionsMap = {
-    [SEMAPHORES_REQUEST_SUCCESS]: (state, action) => ({semaphores: indexBy(action.payload.semaphores, 'ID')}),
+    [SEMAPHORES_REQUEST_SUCCESS]: (state, action) => ({semaphores: _.indexBy(action.payload.semaphores, 'ID')}),
     [SEMAPHORE_HOVER]: (state, action) => ({hoveredSemaphoreId: action.payload.semaphoreId}),
     [SEMAPHORE_LOCK]: (state, action) => ({lockedSemaphoreId: action.payload.semaphoreId, lockedSemaphoreState: action.payload.semaphoreState}),
     [SEMAPHORE_STATE_SUBMIT_SUCCESS]: (state, action) => ({lockedSemaphoreId: null, lockedSemaphoreState: null})

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import SemaphoreActions from '../actions/SemaphoreActions';
 import { getCurrentState } from '../reducers/semaphores';
 import classNames from 'classnames';
-import find from 'lodash.find';
 import { formatTime } from '../util/templateHelpers';
 import { SEMAPHORE_MAP, INDICATOR_SHORT, INDICATOR_MEDIUM, INDICATOR_LONG, CLASSNAME_SHORT, CLASSNAME_MEDIUM, CLASSNAME_LONG } from '../constants';
 
