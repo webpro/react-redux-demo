@@ -1,5 +1,5 @@
-import React, { Component, PropTypes } from 'react'
-import { Redirect, Router, Route } from 'react-router'
+import React, { Component, PropTypes } from 'react';
+import { Redirect, Router, Route } from 'react-router';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
@@ -35,7 +35,7 @@ export default class Root extends Component {
             <Provider store={store}>
                 {renderRoutes.bind(null, history)}
             </Provider>
-        )
+        );
     }
 }
 
@@ -48,5 +48,5 @@ function renderRoutes(history) {
             </Route>
             <Redirect from="/" to="/shifts" />
         </Router>
-    )
+    );
 }

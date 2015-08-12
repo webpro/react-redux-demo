@@ -1,5 +1,5 @@
 function pad(num) {
-    return ('0' + num).slice(-2)
+    return ('0' + num).slice(-2);
 }
 
 export function formatDate(value) {

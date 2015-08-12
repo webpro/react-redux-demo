@@ -16,11 +16,8 @@ const actionsMap = {
 };
 
 const getCurrentState = semaphore => {
-    let state = find(semaphore.STATES, {CURRENT: 'Y'});
-    if(state) {
-        return state.STATE;
-    }
-    return null;
+    let state = _.find(semaphore.STATES, {CURRENT: 'Y'});
+    return state ? state.STATE : null;
 };
 
 export default function semaphores(state = initialState, action) {
@@ -30,4 +27,4 @@ export default function semaphores(state = initialState, action) {
     return {...state, ...reduceFn(state, action)};
 }
 
-export { getCurrentState }
+export { getCurrentState };

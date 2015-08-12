@@ -38,7 +38,7 @@ export default {
             payload: {
                 semaphoreId: semaphoreId
             }
-        }
+        };
     },
 
     lockSemaphore(semaphoreId, requestState) {
@@ -48,7 +48,7 @@ export default {
                 semaphoreId: semaphoreId,
                 semaphoreState: requestState
             }
-        }
+        };
     },
 
     save(data) {
@@ -70,6 +70,6 @@ export default {
                     }
                 });
             });
-        }
+        };
     }
 };

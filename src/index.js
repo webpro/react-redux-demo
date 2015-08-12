@@ -1,5 +1,5 @@
 import React from 'react';
-import HashHistory from 'react-router/lib/HashHistory'
+import HashHistory from 'react-router/lib/HashHistory';
 import Root from './Root';
 
 let env = __DEV__ ? 'local' : 'production';
