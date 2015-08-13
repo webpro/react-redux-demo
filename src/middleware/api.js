@@ -28,13 +28,13 @@ export const REQUEST_API = Symbol('API REQUEST');
 
 export default store => dispatch => action => {
 
-    const callAPI = action[REQUEST_API];
+    const requestAPI = action[REQUEST_API];
 
-    if(typeof callAPI === 'undefined') {
+    if(typeof requestAPI === 'undefined') {
         return dispatch(action);
     }
 
-    const { url, type, method, data } = callAPI;
+    const { url, type, method, data } = requestAPI;
 
     dispatch({type: type});
 
