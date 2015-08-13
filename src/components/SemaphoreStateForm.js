@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import SemaphoreActions from '../actions/SemaphoreActions';
+import { saveSemaphoreState } from '../actions/SemaphoreActions';
 import Comments from './Comments';
 
 function validate(data) {
@@ -43,7 +43,7 @@ export default class SemaphoreStateForm extends React.Component {
         let [data, invalid] = this.handleInput();
 
         if(!invalid) {
-            this.props.dispatch(SemaphoreActions.save(data));
+            this.props.dispatch(saveSemaphoreState(data));
             this.refs.submitButton.getDOMNode().disabled = true;
         }
     }

@@ -4,15 +4,16 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
+import api from './middleware/api';
 import * as reducers from './reducers';
 import FunFairShiftsApp from './container/FunFairShiftsApp';
 import FunFairShifts from './components/FunFairShifts';
 import Semaphores from './components/Semaphores';
 
-let middleware = [thunk];
+let middleware = [thunk, api];
 if(__DEV__) middleware.push(logger);
 
-const createStoreWithMiddleware = applyMiddleware.apply(null, middleware)(createStore),
+const createStoreWithMiddleware = applyMiddleware(...middleware)(createStore),
     reducer = combineReducers(reducers),
     store = createStoreWithMiddleware(reducer);
 

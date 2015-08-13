@@ -1,28 +1,17 @@
-import xhr from 'xhr';
-import { FUNFAIRSHIFTS_REQUEST_SUCCESS, FUNFAIRSHIFTS_SELECT } from '../constants/ActionTypes';
-import { getRequestHeaders } from '../util/helpers.js';
+import { REQUEST_API } from '../middleware/api';
+import { FUNFAIRSHIFTS_REQUEST, FUNFAIRSHIFTS_SELECT } from '../constants/ActionTypes';
 
-export default {
-
-    getShifts(sortKey) {
-
-        return dispatch => {
-
-            let url = FUNFAIR_CONFIG.API.current['shifts'];
-
-            xhr({
-                url: url,
-                json: true,
-                headers: getRequestHeaders()
-            }, function(err, response, body) {
-                dispatch({
-                    type: FUNFAIRSHIFTS_REQUEST_SUCCESS,
-                    payload: {
-                        shifts: body.SHIFTS,
-                        sortKey: sortKey
-                    }
-                });
-            });
-        };
+function fetchShifts() {
+    return {
+        [REQUEST_API]: {
+            url: FUNFAIR_CONFIG.API.current['shifts'],
+            type: FUNFAIRSHIFTS_REQUEST
+        }
     }
-};
+}
+
+export function loadShifts() {
+    return dispatch => {
+        return dispatch(fetchShifts());
+    };
+}

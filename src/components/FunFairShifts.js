@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import FunFairShiftActions from '../actions/FunFairShiftActions';
+import { loadShifts } from '../actions/FunFairShiftActions';
 import FunFairShift from './FunFairShift';
 import { FUNFAIRSHIFTS_SORT } from '../constants/ActionTypes';
 import _ from 'lodash';
@@ -9,8 +9,8 @@ import _ from 'lodash';
 @connect(state => state.funFairShifts)
 export default class FunFairShifts extends React.Component {
 
-    componentDidMount() {
-        this.props.dispatch(FunFairShiftActions.getShifts());
+    componentWillMount() {
+        this.props.dispatch(loadShifts());
     }
 
     componentWillReceiveProps(nextProps) {

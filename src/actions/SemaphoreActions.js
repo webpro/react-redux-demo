@@ -1,35 +1,38 @@
-import xhr from 'xhr';
-import { SEMAPHORES_REQUEST_SUCCESS, SEMAPHORE_HOVER, SEMAPHORE_LOCK, SEMAPHORE_STATE_SUBMIT_SUCCESS } from '../constants/ActionTypes.js';
-import { getRequestHeaders } from '../util/helpers.js';
+import { REQUEST_API } from '../middleware/api';
+import { SEMAPHORES_REQUEST, SEMAPHORE_HOVER, SEMAPHORE_LOCK, SEMAPHORE_STATE_SUBMIT } from '../constants/ActionTypes.js';
 
-let attempts = 0;
+function fetchSemaphores(getState) {
+
+    let state = getState(),
+        { selectedShiftId } = state.funFairShifts;
+
+    return {
+        [REQUEST_API]: {
+            url: `${FUNFAIR_CONFIG.API.current['semaphores']}/${selectedShiftId}`,
+            type: SEMAPHORES_REQUEST
+        }
+    }
+}
+
+function storeSemaphoreState(data) {
+
+    let url = `${FUNFAIR_CONFIG.API.current['state']}/${data.SHIFT_ID}/${data.SEMAPHORE_ID}`;
+
+    return {
+        [REQUEST_API]: {
+            url: url,
+            method: url.indexOf('stub') === -1 ? 'POST' : 'GET',
+            type: SEMAPHORE_STATE_SUBMIT
+        }
+    }
+}
 
 export default {
 
-    getSemaphores(shiftId) {
-
+    loadSemaphores() {
         return (dispatch, getState) => {
-
-            let state = getState(),
-                { selectedShiftId } = state.funFairShifts,
-                url = `${FUNFAIR_CONFIG.API.current['semaphores']}/${selectedShiftId}`;
-
-            xhr({
-                url: url,
-                json: true,
-                headers: getRequestHeaders()
-            }, function (err, response, body) {
-                attempts = 0;
-                dispatch({
-                    type: SEMAPHORES_REQUEST_SUCCESS,
-                    payload: {
-                        semaphores: body.SEMAPHORES
-                    }
-                });
-            });
-
+            return dispatch(fetchSemaphores(getState));
         };
-
     },
 
     selectSemaphore(semaphoreId) {
@@ -51,25 +54,9 @@ export default {
         };
     },
 
-    save(data) {
-
+    saveSemaphoreState(data) {
         return dispatch => {
-
-            let url = `${FUNFAIR_CONFIG.API.current['state']}/${data.SHIFT_ID}/${data.SEMAPHORE_ID}`;
-
-            xhr({
-                url: url,
-                json: data,
-                method: url.indexOf('stub') === -1 ? 'POST' : 'GET',
-                headers: getRequestHeaders()
-            }, function(err, resp, body) {
-                dispatch({
-                    type: SEMAPHORE_STATE_SUBMIT_SUCCESS,
-                    payload: {
-                        result: body
-                    }
-                });
-            });
+            return dispatch(storeSemaphoreState(data));
         };
     }
 };

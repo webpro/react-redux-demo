@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import GenericActions from '../actions/GenericActions';
-import FunFairShiftActions from '../actions/FunFairShiftActions';
-import SemaphoreActions from '../actions/SemaphoreActions';
+import { loadShifts } from '../actions/FunFairShiftActions';
+import { loadSemaphores } from '../actions/SemaphoreActions';
 import Semaphore from './Semaphore';
 import SemaphoreStateForm from './SemaphoreStateForm';
 import Comments from './Comments';
@@ -14,10 +14,7 @@ export default class Semaphores extends React.Component {
 
     componentWillMount() {
         this.props.dispatch(GenericActions.setSelectedShift(this.props.params.SHIFT_ID));
-    }
-
-    componentDidMount() {
-        this.props.dispatch(FunFairShiftActions.getShifts());
+        this.props.dispatch(loadShifts());
         this.setRefreshInterval();
     }
 
@@ -32,7 +29,7 @@ export default class Semaphores extends React.Component {
     }
 
     refresh() {
-        this.props.dispatch(SemaphoreActions.getSemaphores(this.props.funFairShifts.selectedShiftId));
+        this.props.dispatch(loadSemaphores());
     }
 
     render() {

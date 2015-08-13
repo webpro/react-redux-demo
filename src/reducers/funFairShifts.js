@@ -1,4 +1,4 @@
-import { FUNFAIRSHIFTS_REQUEST_SUCCESS, FUNFAIRSHIFTS_SORT, FUNFAIRSHIFTS_SELECT } from '../constants/ActionTypes';
+import { FUNFAIRSHIFTS_REQUEST, FUNFAIRSHIFTS_SORT, FUNFAIRSHIFTS_SELECT } from '../constants/ActionTypes';
 import _ from 'lodash';
 
 const initialState = {
@@ -8,7 +8,7 @@ const initialState = {
 };
 
 const actionsMap = {
-    [FUNFAIRSHIFTS_REQUEST_SUCCESS]: (state, action) => ({shifts: sortBy(action.payload.shifts, state.sortKey)}),
+    [FUNFAIRSHIFTS_REQUEST + '_SUCCESS']: (state, action) => ({shifts: sortBy(action.payload.SHIFTS, state.sortKey)}),
     [FUNFAIRSHIFTS_SORT]: (state, action) => ({shifts: sortBy(state.shifts, action.payload.sortKey), sortKey: action.payload.sortKey}),
     [FUNFAIRSHIFTS_SELECT]: (state, action) => ({selectedShiftId: action.payload.shiftId})
 };
