@@ -1,19 +1,27 @@
-import xhr from 'xhr';
+import 'whatwg-fetch';
 import { getRequestHeaders } from '../util/helpers.js';
 
-function request(url, successCallback, errorCallback) {
+function checkStatus(response) {
+    if(response.status >= 200 && response.status < 300) {
+        return response
+    } else {
+        var error = new Error(response.statusText);
+        error.response = response;
+        throw error;
+    }
+}
 
-    xhr({
-        url: url,
-        json: true,
-        headers: getRequestHeaders()
-    }, function(err, response, body) {
-        if(!err && response.statusCode < 400) {
-            successCallback(body);
-        } else {
-            errorCallback(err || new Error(response.statusCode));
-        }
-    });
+function request(url, { method, data }, successCallback, errorCallback) {
+
+    fetch(url, {
+        method: method || 'GET',
+        headers: getRequestHeaders(),
+        body: data ? JSON.stringify(data) : undefined
+    })
+        .then(checkStatus)
+        .then(response => response.json())
+        .then(successCallback)
+        .catch(errorCallback);
 }
 
 export const REQUEST_API = Symbol('API REQUEST');
@@ -26,15 +34,16 @@ export default store => dispatch => action => {
         return dispatch(action);
     }
 
-    const { url, type } = callAPI;
+    const { url, type, method, data } = callAPI;
 
     dispatch({type: type});
 
-    return request(url, payload => dispatch({
+    return request(url, {method, data}, payload => dispatch({
         type: type + '_SUCCESS',
         payload
     }), err => dispatch({
-        type:  + '_ERROR',
-        error: err.message
+        type: type + '_ERROR',
+        error: err.message || 'Unknown',
+        status: (err.response && err.response.status) || 0
     }));
 };
