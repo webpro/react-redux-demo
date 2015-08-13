@@ -5,12 +5,13 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import api from './middleware/api';
+import throttle from './middleware/throttle';
 import * as reducers from './reducers';
 import FunFairShiftsApp from './container/FunFairShiftsApp';
 import FunFairShifts from './components/FunFairShifts';
 import Semaphores from './components/Semaphores';
 
-let middleware = [thunk, api];
+let middleware = [thunk, throttle, api];
 if(__DEV__) middleware.push(logger);
 
 const createStoreWithMiddleware = applyMiddleware(...middleware)(createStore),

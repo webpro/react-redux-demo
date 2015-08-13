@@ -9,7 +9,8 @@ function fetchSemaphores(getState) {
     return {
         [REQUEST_API]: {
             url: `${FUNFAIR_CONFIG.API.current['semaphores']}/${selectedShiftId}`,
-            type: SEMAPHORES_REQUEST
+            type: SEMAPHORES_REQUEST,
+            throttle: 2000
         }
     }
 }

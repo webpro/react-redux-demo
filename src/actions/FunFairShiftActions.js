@@ -5,7 +5,8 @@ function fetchShifts() {
     return {
         [REQUEST_API]: {
             url: FUNFAIR_CONFIG.API.current['shifts'],
-            type: FUNFAIRSHIFTS_REQUEST
+            type: FUNFAIRSHIFTS_REQUEST,
+            throttle: 2000
         }
     }
 }
