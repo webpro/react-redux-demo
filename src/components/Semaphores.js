@@ -20,7 +20,7 @@ export default class Semaphores extends React.Component {
 
     setRefreshInterval() {
         this.clearRefreshInterval();
-        this._refreshInterval = setInterval(::this.refresh, 5000);
+        this._refreshInterval = setInterval(::this.refresh, 60 * 1000);
         this.refresh();
     }
 
@@ -30,6 +30,10 @@ export default class Semaphores extends React.Component {
 
     refresh() {
         this.props.dispatch(loadSemaphores());
+    }
+
+    componentWillUnmount() {
+        clearInterval(this._refreshInterval);
     }
 
     render() {
