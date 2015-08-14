@@ -2,7 +2,6 @@ import React from 'react';
 import Comment from './Comment';
 import { connect } from 'react-redux';
 
-@connect(state => state)
 export default class Comments extends React.Component {
 
     render() {
