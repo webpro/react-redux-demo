@@ -1,11 +1,12 @@
-import { REQUEST_API } from '../middleware/api';
 import { FUNFAIRSHIFTS_REQUEST, FUNFAIRSHIFTS_SELECT } from '../constants/ActionTypes';
 
 function fetchShifts() {
     return {
-        [REQUEST_API]: {
-            url: FUNFAIR_CONFIG.API.current['shifts'],
-            type: FUNFAIRSHIFTS_REQUEST,
+        type: FUNFAIRSHIFTS_REQUEST,
+        payload: {
+            url: FUNFAIR_CONFIG.API.current['shifts']
+        },
+        meta: {
             throttle: 2000
         }
     }

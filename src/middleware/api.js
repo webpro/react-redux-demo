@@ -24,17 +24,14 @@ function request(url, { method, data }, successCallback, errorCallback) {
         .catch(errorCallback);
 }
 
-export const REQUEST_API = Symbol('API REQUEST');
-
 export default store => dispatch => action => {
 
-    const requestAPI = action[REQUEST_API];
-
-    if(typeof requestAPI === 'undefined') {
+    if(!action.payload || !action.payload.url) {
         return dispatch(action);
     }
 
-    const { url, type, method, data } = requestAPI;
+    const { type } = action;
+    const { url, method, data } = action.payload;
 
     dispatch({type: type});
 

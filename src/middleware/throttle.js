@@ -1,26 +1,18 @@
-import { REQUEST_API } from './api';
-
 let cache = {};
 
 export default store => dispatch => action => {
 
-    const requestAPI = action[REQUEST_API];
-
-    if(typeof requestAPI === 'undefined') {
+    if (!action.type || !action.meta || !action.meta.throttle) {
         return dispatch(action);
     }
 
-    const { type, throttle } = requestAPI;
-
-    if(typeof throttle === 'undefined') {
-        return dispatch(action);
-    }
+    const { type, meta } = action;
 
     if(cache[type]) {
         dispatch({type: type + '_THROTTLED'});
     } else {
         cache[type] = true;
-        setTimeout(() => delete cache[type], throttle);
+        setTimeout(() => delete cache[type], meta.throttle);
         return dispatch(action);
     }
 };

@@ -1,4 +1,3 @@
-import { REQUEST_API } from '../middleware/api';
 import { SEMAPHORES_REQUEST, SEMAPHORE_HOVER, SEMAPHORE_LOCK, SEMAPHORE_STATE_SUBMIT } from '../constants/ActionTypes.js';
 
 function fetchSemaphores(getState) {
@@ -7,9 +6,11 @@ function fetchSemaphores(getState) {
         { selectedShiftId } = state.funFairShifts;
 
     return {
-        [REQUEST_API]: {
-            url: `${FUNFAIR_CONFIG.API.current['semaphores']}/${selectedShiftId}`,
-            type: SEMAPHORES_REQUEST,
+        type: SEMAPHORES_REQUEST,
+        payload: {
+            url: `${FUNFAIR_CONFIG.API.current['semaphores']}/${selectedShiftId}`
+        },
+        meta: {
             throttle: 2000
         }
     }
@@ -20,10 +21,11 @@ function storeSemaphoreState(data) {
     let url = `${FUNFAIR_CONFIG.API.current['state']}/${data.SHIFT_ID}/${data.SEMAPHORE_ID}`;
 
     return {
-        [REQUEST_API]: {
+        type: SEMAPHORE_STATE_SUBMIT,
+        payload: {
             url: url,
             method: url.indexOf('stub') === -1 ? 'POST' : 'GET',
-            type: SEMAPHORE_STATE_SUBMIT
+            data: data
         }
     }
 }
