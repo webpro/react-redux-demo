@@ -11,7 +11,7 @@ function checkStatus(response) {
     }
 }
 
-function request(url, { method, data }, successCallback, errorCallback) {
+function request({ url, method, data }, successCallback, errorCallback) {
 
     fetch(url, {
         method: method || 'GET',
@@ -35,7 +35,7 @@ export default store => dispatch => action => {
 
     dispatch({type: type});
 
-    return request(url, {method, data}, payload => dispatch({
+    return request({url, method, data}, payload => dispatch({
         type: type + '_SUCCESS',
         payload
     }), err => dispatch({
