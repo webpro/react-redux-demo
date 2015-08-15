@@ -13,11 +13,10 @@ The semaphores are updated automatically server-side (just polling every 5 secon
 ## JS stack
 
 * ES6, Webpack, Babel
-* React + Redux + React-router
-* [xhr](https://github.com/Raynos/xhr)
+* React 0.14.0-beta1 + Redux 1.0.0 + React-router 1.0.0-beta3
+* [fetch](https://github.com/github/fetch)
 * [classnames](https://github.com/JedWatson/classnames)
-* [redux-thunk](https://github.com/gaearon/redux-thunk)
-* Several Lodash methods
+* Lodash + [babel-plugin-lodash](https://github.com/megawac/babel-plugin-lodash)
 
 ## CSS stack
 
@@ -27,10 +26,12 @@ The semaphores are updated automatically server-side (just polling every 5 secon
 
 ## Features
 
-* Redux (v1.0.0-rc)
-    * Global state/dispatch + reducers
-* Async actions (i.e. Ajax requests) with redux-thunk
-* React-Router (v1.0.0-beta3) 
+* Async actions (i.e. XHRs)
+* Middleware
+    * [redux-thunk](https://github.com/gaearon/redux-thunk)
+    * [redux-logger](https://github.com/fcomb/redux-logger)
+    * Custom "api" middleware for XHRs
+    * Custom "throttle" middleware
 * Basic development/production toggle
     * `__DEV__`: react-hot-loader, logger middleware
     * Non-`__DEV__`: optimize with UglifyJS
